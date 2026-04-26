@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Assessment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+<h2>Career Assessment Quiz</h2>
+
+<div class="question">
+<label>1️⃣ What type of activities do you enjoy most?</label>
+<select id="interest">
+    <option value="tech">Working with computers & technology</option>
+    <option value="creative">Drawing, designing, content creation</option>
+    <option value="business">Selling, managing, leading</option>
+    <option value="practical">Repairing, building, hands-on work</option>
+    <option value="social">Helping people, teaching</option>
+</select>
+</div>
+
+<div class="question">
+<label>2️⃣ What environment do you prefer?</label>
+<select id="environment">
+    <option value="office">Office / Corporate</option>
+    <option value="field">Outdoor / Field Work</option>
+    <option value="independent">Self-employed</option>
+</select>
+</div>
+
+<div class="question">
+<label>3️⃣ Do you prefer stable income or high-risk high-reward?</label>
+<select id="risk">
+    <option value="stable">Stable</option>
+    <option value="risk">High Risk</option>
+</select>
+</div>
+
+<div class="question">
+<label>4️⃣ Are you willing to study for 4+ years?</label>
+<select id="study">
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+</select>
+</div>
+
+<div class="question">
+<label>5️⃣ Do you want a government job?</label>
+<select id="govt">
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+</select>
+</div>
+
+<br><br>
+<button onclick="generateAdvancedResult()">Get My Career Path</button>
+
+<h2 id="careerResult"></h2>
+</button>
+
+</form>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>Survey Insights</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Field Survey Insights</h2>
+<p>Survey conducted among 30 rural students.</p>
+
+<ul>
+<li>70% unaware of diploma & vocational paths</li>
+<li>60% unaware of scholarship portals</li>
+<li>75% depend only on family advice</li>
+<li>55% concerned about education cost</li>
+</ul>
+<h1>Rural Education Survey</h1>
+
+<div class="survey-chart-section">
+    <h2>Rural Education Awareness Survey (%)</h2>
+    <canvas id="surveyChart"></canvas>
+</div>
+<button onclick="window.location.href='index.html'">
+Back to Home
+</button>
+
+</div>
+<script>
+    const ctx = document.getElementById('surveyChart').getContext('2d');
+
+    const surveyChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                'Higher Education',
+                'Govt Exams',
+                'Skill Courses',
+                'Entrepreneurship',
+                'Agriculture Careers'
+            ],
+            datasets: [{
+                label: 'Awareness Level (%)',
+                data: [60, 72, 45, 35, 40],
+                backgroundColor: [
+                    '#4CAF50',
+                    '#2196F3',
+                    '#FF9800',
+                    '#9C27B0',
+                    '#E91E63'
+                ],
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            animation: {
+                duration: 2000,
+                easing: 'easeOutQuart'
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

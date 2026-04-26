@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Results</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #careerList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .career-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .career-card h3 {
+            margin-top: 0;
+        }
+
+        .salary {
+            color: #2c7be5;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+ <div class="result-container">
+
+    <h1 class="result-title">
+        🎯 Your Personalized Career Recommendations</h1>
+    </h1>
+    <div id="careerList" class="career-grid">
+
+    <script>
+        // Get user data from quiz
+        const userData = JSON.parse(localStorage.getItem("careerData"));
+
+        const careers = [
+
+            // TECH
+            { name: "Software Engineer", field: "tech", salary: "₹6–15 LPA" },
+            { name: "Data Scientist", field: "tech", salary: "₹8–20 LPA" },
+            { name: "Cybersecurity Analyst", field: "tech", salary: "₹6–12 LPA" },
+            { name: "AI Engineer", field: "tech", salary: "₹10–25 LPA" },
+            { name: "Cloud Engineer", field: "tech", salary: "₹7–18 LPA" },
+
+            // CREATIVE
+            { name: "UI/UX Designer", field: "creative", salary: "₹5–12 LPA" },
+            { name: "Graphic Designer", field: "creative", salary: "₹3–8 LPA" },
+            { name: "Animator", field: "creative", salary: "₹4–10 LPA" },
+            { name: "Video Editor", field: "creative", salary: "₹3–9 LPA" },
+
+            // BUSINESS
+            { name: "Chartered Accountant", field: "business", salary: "₹7–20 LPA" },
+            { name: "Investment Banker", field: "business", salary: "₹10–30 LPA" },
+            { name: "Business Analyst", field: "business", salary: "₹6–15 LPA" },
+            { name: "Entrepreneur", field: "business", salary: "High Potential" },
+
+            // PRACTICAL
+            { name: "Mechanical Technician", field: "practical", salary: "₹3–6 LPA" },
+            { name: "Electrician", field: "practical", salary: "₹2–5 LPA" },
+            { name: "Automobile Technician", field: "practical", salary: "₹3–7 LPA" },
+
+            // SOCIAL
+            { name: "Teacher", field: "social", salary: "₹3–8 LPA" },
+            { name: "Nurse", field: "social", salary: "₹4–9 LPA" },
+            { name: "Psychologist", field: "social", salary: "₹5–12 LPA" },
+
+            // GOVERNMENT
+            { name: "IAS Officer", field: "govt", salary: "₹8–15 LPA + Benefits" },
+            { name: "Police Officer", field: "govt", salary: "₹4–10 LPA" },
+            { name: "SSC Officer", field: "govt", salary: "₹3–8 LPA" }
+        ];
+
+        const careerList = document.getElementById("careerList");
+
+        if (!userData) {
+            careerList.innerHTML = "<p>Please complete the quiz first.</p>";
+        } else {
+
+            let matchedCareers = [];
+
+            careers.forEach(career => {
+                if (
+                    career.field === userData.interest ||
+                    (userData.govt === "yes" && career.field === "govt")
+                ) {
+                    matchedCareers.push(career);
+                }
+            });
+
+            // If less than 10 matched, fill remaining with tech careers
+            if (matchedCareers.length < 10) {
+                careers.forEach(career => {
+                    if (!matchedCareers.includes(career) && matchedCareers.length < 10) {
+                        matchedCareers.push(career);
+                    }
+                });
+            }
+
+            matchedCareers.slice(0, 10).forEach(career => {
+
+                const card = document.createElement("div");
+                card.className = "career-card";
+
+                card.innerHTML = `
+                    <h3>${career.name}</h3>
+                    <p class="salary">Estimated Salary: ${career.salary}</p>
+                `;
+
+                careerList.appendChild(card);
+            });
+        }
+    </script>
+    </div>
+ </div>
+
+</body>
+</html>
